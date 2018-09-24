@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Home from './app/components/Home';
+import Menu from './app/components/Menu';
 import Options from './app/components/Options';
 import Sidebar from './app/components/Sidebar';
 import { DrawerNavigator } from 'react-navigation';
@@ -15,9 +16,11 @@ class App extends Component {
 
 const AppStack = DrawerNavigator({
   home: { screen: Home },
-  options: { screen: Options }
-}, {
-  contentComponent: Sidebar
-})
+  options: { screen: Options },
+},
+  {
+    contentComponent: Sidebar
+  }
+)
 
 export default App

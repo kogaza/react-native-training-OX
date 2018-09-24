@@ -13,6 +13,10 @@ export default StyleSheet.create({
   logoContainer: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: 10,
+    margin: 10,
+  },
+  text: {
+    color: 'red',
+    fontSize: 20,
   }
 })

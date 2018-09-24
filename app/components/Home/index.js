@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Button, Image } from "react-native";
+import { Text, View, TouchableOpacity, Alert, Button, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { createStackNavigator } from 'react-navigation';
+import styles from './styles';
+// import Menu from './Menu'
 
 
 class Home extends Component {
@@ -24,7 +26,7 @@ class Home extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerRight: (
       <Image
-        style={{
+        style={{  
           width: 100,
           height: 40,
         }}
@@ -128,15 +130,11 @@ class Home extends Component {
     }
   }
 
-  changeIcons = () => {
-    console.log('działa button')
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View>
+          <View style={styles.changeIcons}>
             <Button title="Change icons" onPress={() => this.props.navigation.navigate('menu')}></Button>
           </View>
           <View style={styles.playersContainer}>
@@ -150,50 +148,50 @@ class Home extends Component {
             </View>
           </View>
         </View>
-        <View style={{ paddingTop: 50 }} />
-
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity onPress={() => this.onTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0, }]}>
-            {this.renderIcon(0, 0)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(0, 1)} style={[styles.tile, { borderTopWidth: 0, }]}>
-            {this.renderIcon(0, 1)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(0, 2)} style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0, }]}>
-            {this.renderIcon(0, 2)}
-          </TouchableOpacity>
+        <View style={styles.board}>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity onPress={() => this.onTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0, }]}>
+              {this.renderIcon(0, 0)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(0, 1)} style={[styles.tile, { borderTopWidth: 0, }]}>
+              {this.renderIcon(0, 1)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(0, 2)} style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0, }]}>
+              {this.renderIcon(0, 2)}
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity onPress={() => this.onTilePress(1, 0)} style={[styles.tile, { borderLeftWidth: 0, }]}>
+              {this.renderIcon(1, 0)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(1, 1)} style={styles.tile}>
+              {this.renderIcon(1, 1)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(1, 2)} style={[styles.tile, { borderRightWidth: 0, }]}>
+              {this.renderIcon(1, 2)}
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity onPress={() => this.onTilePress(2, 0)} style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0, }]}>
+              {this.renderIcon(2, 0)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(2, 1)} style={[styles.tile, { borderBottomWidth: 0, }]}>
+              {this.renderIcon(2, 1)}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onTilePress(2, 2)} style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0, }]}>
+              {this.renderIcon(2, 2)}
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity onPress={() => this.onTilePress(1, 0)} style={[styles.tile, { borderLeftWidth: 0, }]}>
-            {this.renderIcon(1, 0)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(1, 1)} style={styles.tile}>
-            {this.renderIcon(1, 1)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(1, 2)} style={[styles.tile, { borderRightWidth: 0, }]}>
-            {this.renderIcon(1, 2)}
-          </TouchableOpacity>
+        <View style={styles.newGame}>
+          <Button title='New Game' onPress={this.onNewGamePress} />
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity onPress={() => this.onTilePress(2, 0)} style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0, }]}>
-            {this.renderIcon(2, 0)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(2, 1)} style={[styles.tile, { borderBottomWidth: 0, }]}>
-            {this.renderIcon(2, 1)}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onTilePress(2, 2)} style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0, }]}>
-            {this.renderIcon(2, 2)}
-          </TouchableOpacity>
-        </View>
-        <View style={{ paddingTop: 50 }} />
-        <Button title='New Game' onPress={this.onNewGamePress} />
-
       </View>
     );
   }
 }
 
-class Menu extends Component {
+class Options extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerRight: (
@@ -204,63 +202,21 @@ class Menu extends Component {
         }}
         source={require('../../images/memoo-logo.png')} />
     ),
-    title: 'Menu!',
+    title: 'Options',
   })
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          Działa menu
-        </Text>
-        <Button title="Save" onPress={() => this.props.navigation.navigate('home')}></Button>
-
+      <View style={styles.question}>
+        <Text style={styles.questionText}>What pictures you want to play?</Text>
       </View>
-    )
+      </View>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFEB4",
-    borderWidth: 10,
-  },
-  tile: {
-    borderWidth: 5,
-    width: 100,
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  tileIcon: {
-    fontSize: 60,
-  },
-  tileX: {
-    color: "red",
-  },
-  tileO: {
-    color: "green",
-  },
-  topIcon: {
-    fontSize: 24,
-  },
-  playersContainer: {
-    // position: "absolute",
-    // top: 0,
-    // right: 0,
-    // padding: 10,
-  },
-  header: {
-    borderWidth: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-  }
-});
-
 export default createStackNavigator({
   home: Home,
-  menu: Menu
+  options: Options
 });

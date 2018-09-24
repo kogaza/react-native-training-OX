@@ -38,7 +38,7 @@ class Sidebar extends Component {
               style={styles.link}
               onPress={_ => this.navigate(e.route)}
             >
-              <Text style={{ color: 'red' }}>{e.title}</Text>
+              <Text style={styles.text}>{e.title}</Text>
             </TouchableOpacity>
           ))
         }
