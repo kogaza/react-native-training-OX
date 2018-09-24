@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Button } from "react-native";
 import Home from './app/components/Home';
 import Options from './app/components/Options';
 import Sidebar from './app/components/Sidebar';
